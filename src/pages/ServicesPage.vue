@@ -1,30 +1,30 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">服务项目</h1>
-    <p class="text-gray-500 mb-8">专业的中医理疗服务，总有一款适合你</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $t('services.title') }}</h1>
+    <p class="text-gray-500 mb-8">{{ $t('services.subtitle') }}</p>
 
     <!-- Category Filter -->
     <div class="flex gap-3 mb-8 flex-wrap">
       <button @click="category = ''"
         :class="['px-5 py-2 rounded-full text-sm font-medium transition', !category ? 'bg-sky-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">
-        全部
+        {{ $t('services.all') }}
       </button>
       <button @click="category = 'massage'"
         :class="['px-5 py-2 rounded-full text-sm font-medium transition', category === 'massage' ? 'bg-sky-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">
-        按摩
+        {{ $t('services.massage') }}
       </button>
       <button @click="category = 'reflexology'"
         :class="['px-5 py-2 rounded-full text-sm font-medium transition', category === 'reflexology' ? 'bg-sky-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">
-        反射疗法
+        {{ $t('services.reflexology') }}
       </button>
       <button @click="category = 'therapy'"
         :class="['px-5 py-2 rounded-full text-sm font-medium transition', category === 'therapy' ? 'bg-sky-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">
-        理疗
+        {{ $t('services.therapy') }}
       </button>
     </div>
 
     <!-- Loading -->
-    <div v-if="loading" class="text-center py-20 text-gray-400">加载中...</div>
+    <div v-if="loading" class="text-center py-20 text-gray-400">{{ $t('common.loading') }}</div>
 
     <!-- Services Grid -->
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,8 +40,8 @@
         <p class="text-gray-500 text-sm mb-3">{{ s.description }}</p>
         <div class="flex items-center gap-2">
           <span class="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded">{{ s.duration }}</span>
-          <span v-if="s.available.includes('store')" class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded">到店</span>
-          <span v-if="s.available.includes('home')" class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded">上门</span>
+          <span v-if="s.available.includes('store')" class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded">{{ $t('services.inStore') }}</span>
+          <span v-if="s.available.includes('home')" class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded">{{ $t('services.atHome') }}</span>
         </div>
       </div>
     </div>
