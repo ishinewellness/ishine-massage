@@ -1,0 +1,104 @@
+{
+  "services": [
+    {
+      "id": "tuina-30",
+      "name": "Tuina Massage",
+      "nameZh": "推拿按摩",
+      "duration": "30 min",
+      "price": 45,
+      "description": "Traditional Chinese therapeutic massage focused on restoring balance and improving energy flow.",
+      "category": "massage",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "tuina-45",
+      "name": "Tuina Massage",
+      "nameZh": "推拿按摩",
+      "duration": "45 min",
+      "price": 60,
+      "description": "Traditional Chinese therapeutic massage focused on restoring balance and improving energy flow.",
+      "category": "massage",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "tuina-60",
+      "name": "Tuina Massage",
+      "nameZh": "推拿按摩",
+      "duration": "60 min",
+      "price": 75,
+      "description": "Traditional Chinese therapeutic massage - our most popular option.",
+      "category": "massage",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "tuina-90",
+      "name": "Tuina Massage",
+      "nameZh": "推拿按摩",
+      "duration": "90 min",
+      "price": 110,
+      "description": "Extended deep therapeutic massage for full body relaxation.",
+      "category": "massage",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "tuina-120",
+      "name": "Tuina Massage",
+      "nameZh": "推拿按摩",
+      "duration": "120 min",
+      "price": 140,
+      "description": "Ultimate full body therapeutic session for complete rejuvenation.",
+      "category": "massage",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "reflexology-30",
+      "name": "Reflexology",
+      "nameZh": "足部反射疗法",
+      "duration": "30 min",
+      "price": 45,
+      "description": "Gentle pressure on specific points on the feet to promote relaxation and improve circulation.",
+      "category": "reflexology",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "reflexology-60",
+      "name": "Reflexology",
+      "nameZh": "足部反射疗法",
+      "duration": "60 min",
+      "price": 75,
+      "description": "Full foot reflexology session for deep relaxation and balance.",
+      "category": "reflexology",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "moxibustion",
+      "name": "Moxibustion",
+      "nameZh": "艾灸",
+      "duration": "90 min",
+      "price": 150,
+      "description": "Traditional Chinese therapy using warm mugwort heat to improve circulation and support healing.",
+      "category": "therapy",
+      "available": ["store"]
+    },
+    {
+      "id": "cupping",
+      "name": "Cupping Therapy",
+      "nameZh": "拔罐疗法",
+      "duration": "45 min",
+      "price": 75,
+      "description": "Gentle suction therapy to stimulate circulation, release tension, and promote healing.",
+      "category": "therapy",
+      "available": ["store", "home"]
+    },
+    {
+      "id": "hot-stone",
+      "name": "Hot Stone Massage",
+      "nameZh": "热石按摩",
+      "duration": "90 min",
+      "price": 150,
+      "description": "Smooth heated stones combined with expert massage for deep relaxation and harmony.",
+      "category": "massage",
+      "available": ["store"]
+    }
+  ]
+}

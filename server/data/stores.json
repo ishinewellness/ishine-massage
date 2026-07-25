@@ -1,0 +1,17 @@
+[
+  {
+    "id": "store-1",
+    "name": "iShine Pierrefonds",
+    "nameFr": "iShine Pierrefonds",
+    "address": "17800-C Boul Gouin O, Pierrefonds - Roxboro, QC H9J 1A8",
+    "phone": "(514) 664-1908",
+    "email": "ishine.centre@gmail.com",
+    "hours": "Wednesday - Sunday, 12pm - 8pm",
+    "lat": 45.4835,
+    "lng": -73.8762,
+    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+    "rating": 4.8,
+    "reviews": 127,
+    "services": ["tuina-30","tuina-45","tuina-60","tuina-90","tuina-120","reflexology-30","reflexology-60","moxibustion","cupping","hot-stone"]
+  }
+]
