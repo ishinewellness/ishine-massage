@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/**",
-      "use": "@vercel/static"
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/**",
+      "memory": 256
     }
-  ],
+  },
   "routes": [
-    { "src": "/api/(.*)", "dest": "app.js" },
-    { "src": "/(.*)", "dest": "/dist/$1" }
+    { "src": "/api/(.*)", "dest": "api/index.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

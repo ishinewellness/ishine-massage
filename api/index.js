@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const servicesRoutes = require('./server/routes/services');
-const storesRoutes = require('./server/routes/stores');
-const therapistsRoutes = require('./server/routes/therapists');
-const ordersRoutes = require('./server/routes/orders');
+const servicesRoutes = require('../server/routes/services');
+const storesRoutes = require('../server/routes/stores');
+const therapistsRoutes = require('../server/routes/therapists');
+const ordersRoutes = require('../server/routes/orders');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use('/api/therapists', therapistsRoutes);
 app.use('/api/orders', ordersRoutes);
 
 // Serve frontend static files
-const distPath = path.join(__dirname, 'dist');
+const distPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 
 // SPA fallback
