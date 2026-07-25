@@ -2,7 +2,7 @@
   <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <router-link to="/" class="flex items-center gap-2">
-        <span class="text-2xl">💆</span>
+        <LogoIcon :size="36" />
         <span class="text-xl font-bold text-sky-600">iShine<span class="text-amber-500">Wellness</span></span>
       </router-link>
 
@@ -36,6 +36,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import LogoIcon from './LogoIcon.vue'
 
 const { locale } = useI18n()
 
