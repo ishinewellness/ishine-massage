@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ishine-massage
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: node server/server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22
