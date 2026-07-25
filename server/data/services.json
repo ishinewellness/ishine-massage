@@ -8,7 +8,7 @@
       "price": 45,
       "description": "Traditional Chinese therapeutic massage focused on restoring balance and improving energy flow.",
       "category": "massage",
-      "available": ["store", "home"]
+      "available": ["store"]
     },
     {
       "id": "tuina-45",
@@ -18,7 +18,7 @@
       "price": 60,
       "description": "Traditional Chinese therapeutic massage focused on restoring balance and improving energy flow.",
       "category": "massage",
-      "available": ["store", "home"]
+      "available": ["store"]
     },
     {
       "id": "tuina-60",
@@ -58,7 +58,7 @@
       "price": 45,
       "description": "Gentle pressure on specific points on the feet to promote relaxation and improve circulation.",
       "category": "reflexology",
-      "available": ["store", "home"]
+      "available": ["store"]
     },
     {
       "id": "reflexology-60",
@@ -88,7 +88,7 @@
       "price": 75,
       "description": "Gentle suction therapy to stimulate circulation, release tension, and promote healing.",
       "category": "therapy",
-      "available": ["store", "home"]
+      "available": ["store"]
     },
     {
       "id": "hot-stone",

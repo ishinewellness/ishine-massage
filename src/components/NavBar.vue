@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <router-link to="/" class="flex items-center gap-2">
         <span class="text-2xl">💆</span>
-        <span class="text-xl font-bold text-sky-600">iShine<span class="text-amber-500">Massage</span></span>
+        <span class="text-xl font-bold text-sky-600">iShine<span class="text-amber-500">Wellness</span></span>
       </router-link>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
