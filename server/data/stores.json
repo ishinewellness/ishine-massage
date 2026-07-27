@@ -15,5 +15,22 @@
     "rating": 4.8,
     "reviews": 127,
     "services": ["tuina-30","tuina-45","tuina-60","tuina-90","tuina-120","reflexology-30","reflexology-60","moxibustion","cupping","hot-stone"]
+  },
+  {
+    "id": "store-2",
+    "name": "iShine Downtown",
+    "nameFr": "iShine Centre-Ville",
+    "address": "1250 Rue Sainte-Catherine O, Montréal, QC H3G 1P2",
+    "phone": "(514) 555-0188",
+    "email": "ishine.centre@gmail.com",
+    "hours": "Monday - Saturday, 10am - 9pm",
+    "openTime": "10:00",
+    "closeTime": "21:00",
+    "lat": 45.4980,
+    "lng": -73.5790,
+    "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+    "rating": 4.7,
+    "reviews": 86,
+    "services": ["tuina-60","tuina-90","tuina-120","reflexology-60","moxibustion","cupping","hot-stone"]
   }
 ]
