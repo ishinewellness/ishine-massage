@@ -66,6 +66,14 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  const chunks = [];
+  req.on('data', (c) => chunks.push(c));
+  req.on('end', () => {
+    const raw = Buffer.concat(chunks).toString();
+    res.json({ rawLength: raw.length, rawPreview: raw.slice(0, 200) });
+  });
+  req.on('error', () => res.json({ error: 'stream error' }));
+  return;";
   const body = await readBody(req);
   const orders = readOrders();
   const { mode, serviceId, storeId, therapistId, customerName, phone, address, date, time, note } = body;
