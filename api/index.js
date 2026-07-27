@@ -11,8 +11,17 @@ const app = express();
 app.use(cors());
 
 // Body parsing — tolerant of Vercel's pre-parsed request body (avoids 400 on re-read)
+// Vercel may pre-populate req.body as a JSON *string*; handle string, object, or raw stream.
 app.use((req, res, next) => {
-  if (req.body && typeof req.body === 'object') return next(); // Vercel already parsed it
+  const b = req.body;
+  if (b !== undefined && b !== null) {
+    if (typeof b === 'string') {
+      try { req.body = b ? JSON.parse(b) : {}; } catch { req.body = {}; }
+    }
+    // already an object/array — keep as-is
+    return next();
+  }
+  // fallback: read the raw stream (local dev / Vite proxy)
   let data = '';
   let done = false;
   const finish = () => {
