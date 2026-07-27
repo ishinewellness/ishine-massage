@@ -20,6 +20,21 @@ function readOrders() {
   return [];
 }
 
+// Read and parse the raw request body (works on Vercel where express.json re-reads a drained stream)
+function readBody(req) {
+  return new Promise((resolve) => {
+    const chunks = [];
+    req.on('data', (c) => chunks.push(c));
+    req.on('end', () => {
+      const raw = Buffer.concat(chunks).toString();
+      try { resolve(raw ? JSON.parse(raw) : {}); } catch {
+        resolve({});
+      }
+    });
+    req.on('error', () => resolve({}));
+  });
+}
+
 function saveOrders(orders) {
   // Vercel's code directory is read-only; fall back to /tmp so the request still succeeds
   const candidates = isVercel ? ['/tmp/orders.json', ORDERS_FILE] : [ORDERS_FILE];
@@ -50,9 +65,10 @@ router.get('/:id', (req, res) => {
   res.json(order);
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  const body = await readBody(req);
   const orders = readOrders();
-  const { mode, serviceId, storeId, therapistId, customerName, phone, address, date, time, note } = req.body;
+  const { mode, serviceId, storeId, therapistId, customerName, phone, address, date, time, note } = body;
 
   const order = {
     id: 'ORD-' + Date.now().toString(36).toUpperCase(),
