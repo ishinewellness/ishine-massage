@@ -10,6 +10,22 @@ const app = express();
 
 app.use(cors());
 
+// DEBUG: inspect what Vercel delivers as the raw request body
+app.post('/api/echo', (req, res) => {
+  const chunks = [];
+  req.on('data', (c) => chunks.push(c));
+  req.on('end', () => {
+    const raw = Buffer.concat(chunks).toString();
+    res.json({
+      rawLength: raw.length,
+      rawPreview: raw.slice(0, 200),
+      bodyType: typeof req.body,
+      bodyPreview: typeof req.body === 'string' ? req.body.slice(0, 200) : req.body
+    });
+  });
+  req.on('error', () => res.json({ error: 'stream error' }));
+});
+
 // Body parsing — tolerant of Vercel's pre-parsed request body (avoids 400 on re-read)
 // Vercel may pre-populate req.body as a JSON *string*; handle string, object, or raw stream.
 app.use((req, res, next) => {
