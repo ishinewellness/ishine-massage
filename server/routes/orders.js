@@ -5,17 +5,33 @@ const path = require('path');
 
 const ORDERS_FILE = path.join(__dirname, '..', 'data', 'orders.json');
 
+const isVercel = !!process.env.VERCEL || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+
 function readOrders() {
-  try {
-    const data = fs.readFileSync(ORDERS_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
+  const candidates = isVercel ? ['/tmp/orders.json', ORDERS_FILE] : [ORDERS_FILE];
+  for (const f of candidates) {
+    try {
+      const data = fs.readFileSync(f, 'utf-8');
+      return JSON.parse(data);
+    } catch {
+      // try next candidate
+    }
   }
+  return [];
 }
 
 function saveOrders(orders) {
-  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  // Vercel's code directory is read-only; fall back to /tmp so the request still succeeds
+  const candidates = isVercel ? ['/tmp/orders.json', ORDERS_FILE] : [ORDERS_FILE];
+  for (const f of candidates) {
+    try {
+      fs.writeFileSync(f, JSON.stringify(orders, null, 2));
+      return;
+    } catch {
+      // try next candidate
+    }
+  }
+  console.warn('[orders] could not persist order to disk; request still succeeded');
 }
 
 router.get('/', (req, res) => {
