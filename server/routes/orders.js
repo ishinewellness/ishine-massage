@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const { sendBookingNotification } = require('../mailer');
 
 const ORDERS_FILE = path.join(__dirname, '..', 'data', 'orders.json');
 
@@ -72,6 +73,8 @@ router.post('/', (req, res) => {
 
   orders.push(order);
   saveOrders(orders);
+  // Fire-and-forget: don't block the response, but log failures. Email is skipped if SMTP isn't configured.
+  sendBookingNotification(order).catch((e) => console.warn('[mailer] send error:', e && e.message));
   res.status(201).json(order);
 });
 
