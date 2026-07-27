@@ -30,7 +30,7 @@
       </div>
       <div v-if="storesLoading" class="text-center py-8 text-gray-400">{{ $t('common.loading') }}</div>
       <div v-else class="space-y-4">
-        <button v-for="s in stores" :key="s.id" @click="selectedStore = s; step = 'store-3'"
+        <button v-for="s in stores" :key="s.id" @click="selectedStore = s; form.time = ''; step = 'store-3'"
           class="w-full text-left p-5 rounded-xl border-2 border-gray-200 hover:border-sky-500 hover:bg-sky-50 transition">
           <h3 class="font-bold text-gray-900">{{ s.name }}</h3>
           <p class="text-sm text-gray-500 mt-1">{{ s.address }}</p>
@@ -66,7 +66,7 @@
       </div>
       <div v-if="therapistsLoading" class="text-center py-8 text-gray-400">{{ $t('common.loading') }}</div>
       <div v-else class="space-y-4">
-        <button v-for="t in therapists" :key="t.id" @click="selectedTherapist = t; step = 'home-4'"
+        <button v-for="t in therapists" :key="t.id" @click="selectedTherapist = t; form.time = ''; step = 'home-4'"
           class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-green-500 transition flex items-center gap-4">
           <img :src="t.avatar" :alt="t.name" class="w-14 h-14 rounded-full object-cover" />
           <div class="flex-1">
@@ -226,13 +226,27 @@ const availableServices = computed(() => {
   return services.value.filter(s => s.available.includes('home'))
 })
 
-const timeSlots = [
-  '12:00', '12:30', '13:00', '13:30',
-  '14:00', '14:30', '15:00', '15:30',
-  '16:00', '16:30', '17:00', '17:30',
-  '18:00', '18:30', '19:00', '19:30',
-  '20:00', '20:30'
-]
+// Generate time slots between open and close (last slot = close - 30min)
+function toMin(t) { const [h, m] = t.split(':').map(Number); return h * 60 + m }
+function fmtMin(m) { const h = Math.floor(m / 60), mm = m % 60; return String(h).padStart(2, '0') + ':' + String(mm).padStart(2, '0') }
+function generateSlots(open, close) {
+  const start = toMin(open)
+  const end = toMin(close) - 30
+  const out = []
+  for (let t = start; t <= end; t += 30) out.push(fmtMin(t))
+  return out
+}
+
+// Home service has no store hours — use a default window
+const HOME_OPEN = '12:00'
+const HOME_CLOSE = '21:00'
+
+const timeSlots = computed(() => {
+  if (isStoreMode.value && selectedStore.value && selectedStore.value.openTime) {
+    return generateSlots(selectedStore.value.openTime, selectedStore.value.closeTime)
+  }
+  return generateSlots(HOME_OPEN, HOME_CLOSE)
+})
 
 function selectMode(mode) {
   if (mode === 'store') {
